@@ -15,16 +15,6 @@
     <style>
         .font-luxury { font-family: 'Cinzel', serif; }
         .font-body { font-family: 'Inter', sans-serif; }
-        /* Style to show what is being edited when admin mode is on */
-        .admin-editing-mode [contenteditable="true"] {
-            outline: 1px dashed rgba(220, 38, 38, 0.4);
-            background-color: rgba(220, 38, 38, 0.05);
-            cursor: pointer;
-        }
-        .admin-editing-mode [contenteditable="true"]:focus {
-            outline: 2px solid #dc2626;
-            background-color: rgba(220, 38, 38, 0.1);
-        }
     </style>
 </head>
 <body id="page-body" class="bg-[#050505] text-neutral-400 font-body antialiased selection:bg-red-600 selection:text-white">
@@ -276,87 +266,6 @@ P.S. I am currently applying final updates and modifications to our website to b
             <p data-key="footer-copyright">&copy; 2026 JL MOBILE AUTO REPAIR & PERFORMANCE. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
-
-
-    <!-- ========================================== -->
-    <!-- ADVANCED LIVE APP CONTROL CENTER           -->
-    <!-- ========================================== -->
-    
-    <!-- Hidden Corner Hotspot -->
-    <div onclick="toggleAdminPanel()" class="fixed bottom-0 right-0 w-8 h-8 bg-transparent cursor-pointer z-[9999]" title="Toggle Systems"></div>
-
-    <!-- Admin Drawer -->
-    <div id="adminPanel" class="fixed top-0 right-0 h-full w-80 bg-neutral-950 border-l border-neutral-900 shadow-2xl z-[9998] transform translate-x-full transition-transform duration-300 p-6 font-sans text-xs uppercase tracking-wider text-neutral-400 overflow-y-auto">
-        <div class="flex items-center justify-between border-b border-neutral-900 pb-4 mb-6">
-            <h3 class="text-sm font-luxury font-bold text-white tracking-widest"><i class="fa-solid fa-sliders text-red-500 mr-2"></i>JL Engine Room</h3>
-            <button onclick="toggleAdminPanel()" class="text-neutral-500 hover:text-white text-lg">&times;</button>
-        </div>
-
-        <!-- Password Field -->
-        <div id="adminAuth">
-            <label class="block mb-2 font-bold text-neutral-500">Security Access Sequence</label>
-            <input type="password" id="adminPassword" class="w-full bg-[#050505] border border-neutral-900 px-3 py-3 text-white mb-4 focus:outline-none focus:border-red-800 transition-colors">
-            <button onclick="unlockAdmin()" class="w-full bg-red-700 text-white font-bold py-3 hover:bg-red-600 transition-colors">Authorize Systems</button>
-        </div>
-
-        <!-- Master Global Control Engine Inputs -->
-        <div id="adminControls" class="hidden space-y-5 font-bold">
-            <div class="bg-red-950/20 border border-red-900/40 p-3 text-[11px] text-red-400 normal-case tracking-normal rounded-sm mb-4">
-                <strong>Visual Editor Engaged!</strong> You can now click and overwrite any text block directly on your main webpage screen.
-            </div>
-            <div>
-                <label class="block mb-2 text-neutral-500">Contact Voice Vector (Phone)</label>
-                <input type="text" id="editPhone" class="w-full bg-[#050505] border border-neutral-900 px-3 py-2 text-white font-normal lowercase focus:outline-none focus:border-red-800">
-            </div>
-            <div>
-                <label class="block mb-2 text-neutral-500">Contact Electronic Mail (Email)</label>
-                <input type="text" id="editEmail" class="w-full bg-[#050505] border border-neutral-900 px-3 py-2 text-white font-normal lowercase focus:outline-none focus:border-red-800">
-            </div>
-            <div>
-                <label class="block mb-2 text-neutral-500">Instagram Handle URL</label>
-                <input type="text" id="editInsta" class="w-full bg-[#050505] border border-neutral-900 px-3 py-2 text-white font-normal lowercase focus:outline-none focus:border-red-800">
-            </div>
-            <div>
-                <label class="block mb-2 text-neutral-500">TikTok Channel URL</label>
-                <input type="text" id="editTikTok" class="w-full bg-[#050505] border border-neutral-900 px-3 py-2 text-white font-normal lowercase focus:outline-none focus:border-red-800">
-            </div>
-            <div>
-                <label class="block mb-2 text-neutral-500">Facebook Page URL</label>
-                <input type="text" id="editFB" class="w-full bg-[#050505] border border-neutral-900 px-3 py-2 text-white font-normal lowercase focus:outline-none focus:border-red-800">
-            </div>
-            <div>
-                <label class="block mb-2 text-neutral-500">Formspree Form ID</label>
-                <input type="text" id="editFormspree" class="w-full bg-[#050505] border border-neutral-900 px-3 py-2 text-white font-normal focus:outline-none focus:border-red-800" placeholder="e.g. x4a7b9z">
-            </div>
-            <div>
-                <label class="block mb-2 text-neutral-500">Hero Section Background Image Link</label>
-                <input type="text" id="editHeroBg" class="w-full bg-[#050505] border border-neutral-900 px-3 py-2 text-white font-normal focus:outline-none focus:border-red-800" placeholder="https://images.unsplash.com/...">
-            </div>
-            
-            <!-- NEW: ASE Badge Customization Inputs -->
-            <div>
-                <label class="block mb-2 text-neutral-500">Certification / ASE Badge Image Link</label>
-                <input type="text" id="editAseImg" class="w-full bg-[#050505] border border-neutral-900 px-3 py-2 text-white font-normal focus:outline-none focus:border-red-800" placeholder="https://...">
-            </div>
-
-            <div>
-                <label class="block mb-2 text-neutral-500">Theme Ambient Color Glow (Hex/Tailwind)</label>
-                <select id="editThemeColor" class="w-full bg-[#050505] border border-neutral-900 px-3 py-2 text-white font-normal text-xs focus:outline-none focus:border-red-800">
-                    <option value="bg-red-900/10">Bespoke Crimson Red (Default)</option>
-                    <option value="bg-blue-900/10">Velocity Blue</option>
-                    <option value="bg-amber-900/10">Chassis Gold</option>
-                    <option value="bg-zinc-800/20">Stealth Gray</option>
-                </select>
-            </div>
-            <div class="border-t border-neutral-900 pt-4">
-                <label class="block mb-2 text-neutral-500">Modify Security Token</label>
-                <input type="text" id="editToken" class="w-full bg-[#050505] border border-neutral-900 px-3 py-2 text-white font-normal focus:outline-none focus:border-red-800">
-            </div>
-            
-            <button onclick="saveAllSettings()" class="w-full bg-white text-black font-black py-3.5 hover:bg-neutral-200 transition-colors mt-6">Commit Configurations</button>
-        </div>
-    </div>
-
     <!-- Live Management Client Script Framework -->
     <script>
         // System variables initialization
