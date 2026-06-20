@@ -21,8 +21,7 @@
 
     <!-- Premium Top Banner -->
     <div class="bg-red-950/30 border-b border-red-900/30 text-center py-2 px-4 text-[10px] tracking-[0.25em] text-red-400 uppercase font-semibold">
-        <i class="fa-solid fa-truck-ramp-box mr-2 animate-pulse"></i> <span>WELCOME TO MY WEBSITE, FEEL FREE TO LOOK AROUND AND CONTACT ME FOR ANY QUESTIONS!
-P.S. I am currently applying final updates and modifications to our website to better serve you.</span>
+        <i class="fa-solid fa-truck-ramp-box mr-2 animate-pulse"></i> <span>WELCOME TO MY WEBSITE, FEEL FREE TO LOOK AROUND AND CONTACT ME FOR ANY QUESTIONS!</span>
     </div>
 
     <!-- Navigation -->
@@ -33,14 +32,23 @@ P.S. I am currently applying final updates and modifications to our website to b
                     <span class="text-xl font-luxury font-bold tracking-[0.15em] text-white">JL MOBILE</span>
                     <span class="text-[9px] tracking-[0.28em] text-red-500 font-bold uppercase -mt-1">AUTO REPAIR & PERFORMANCE</span>
                 </div>
-                <!-- Pure Circle ASE Shield (No Side Words) -->
-                <div class="border-l border-neutral-800 pl-6 hidden sm:flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1 overflow-hidden aspect-square">
-                        <img id="header-ase-img" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/National_Institute_for_Automotive_Service_Excellence_logo.svg" alt="ASE Shield" class="w-full h-full object-contain object-center scale-110">
-                    </div>
-                </div>
-            </div>
-            
+                <!-- Standalone Premium Pure Circle ASE Badge (No Text) -->
+<div class="w-12 h-12 rounded-full bg-gradient-to-b from-[#003366] to-[#001f4d] flex items-center justify-center shadow-lg shadow-black/50 border-2 border-neutral-800 aspect-square flex-shrink-0 relative group">
+    
+    <!-- Inner Subtle Metallic Rim -->
+    <div class="absolute inset-0.5 rounded-full border border-white/10 pointer-events-none"></div>
+    
+    <!-- The Iconic ASE Gear Wheel (Rendered dynamically using SVG) -->
+    <svg class="w-8 h-8 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Outer Cog/Gear Teeth Rings -->
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        <!-- Sharp Inner Mechanical Gear Intersections -->
+        <path d="M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 8.5a2.5 2.5 0 1 1 2.5-2.5 2.5 2.5 0 0 1-2.5 2.5z"/>
+    </svg>
+    
+    <!-- Subtle Premium High-End Glow Overlay -->
+    <div class="absolute inset-0 bg-white/5 rounded-full mix-blend-overlay"></div>
+</div>
             <nav class="hidden lg:flex space-x-10 text-[11px] font-semibold tracking-[0.2em] text-neutral-400 uppercase">
                 <a href="#curated-services" class="hover:text-white border-b border-transparent hover:border-red-600 pb-1 transition-all">what i do</a>
                 <a href="#engineering-standards" class="hover:text-white border-b border-transparent hover:border-red-600 pb-1 transition-all">what to expect</a>
