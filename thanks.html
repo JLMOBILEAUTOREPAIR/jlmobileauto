@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Received | JL Mobile Auto Repair</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for High-End Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .font-luxury { font-family: 'Cinzel', serif; }
+        .font-body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#050505] text-neutral-400 font-body antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header (Matches Main Site Branding) -->
+    <header class="bg-black/80 backdrop-blur-md border-b border-neutral-900 w-full">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-24 flex items-center justify-between">
+            <div class="flex flex-col">
+                <span class="text-xl font-luxury font-bold tracking-[0.15em] text-white">JL MOBILE</span>
+                <span class="text-[9px] tracking-[0.28em] text-red-500 font-bold uppercase -mt-1">AUTO REPAIR & PERFORMANCE</span>
+            </div>
+            <a href="index.html" class="text-xs uppercase tracking-widest font-bold text-neutral-400 hover:text-white transition-colors">
+                <i class="fa-solid fa-arrow-left mr-2 text-[10px]"></i> Return Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Thank You Message -->
+    <main class="flex-grow flex items-center justify-center py-20 px-6">
+        <div class="max-w-xl w-full bg-neutral-950 border border-neutral-900 p-8 md:p-12 text-center relative">
+            <div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-900 via-red-600 to-red-900"></div>
+            
+            <!-- Success Icon -->
+            <div class="text-red-500 text-3xl mb-6">
+                <i class="fa-solid fa-circle-check animate-pulse"></i>
+            </div>
+            
+            <span class="text-[10px] tracking-[0.4em] uppercase text-red-500 font-bold block mb-3">Transmission Successful</span>
+            <h1 class="text-2xl md:text-3xl font-luxury text-white uppercase tracking-wider mb-4">Consultation Requested</h1>
+            
+            <p class="text-xs text-neutral-400 font-light leading-relaxed mb-8">
+                Thank you for submitting your vehicle configuration. Your build details and location parameters have been securely routed to my private console. I personally review every engineering brief and will reach out via text or call shortly to finalize your schedule layout.
+            </p>
+            
+            <!-- Call To Action Button -->
+            <a href="index.html" class="inline-block bg-red-700 hover:bg-red-600 text-white font-bold uppercase tracking-[0.25em] px-8 py-4 text-xs transition-all duration-300 shadow-xl shadow-red-950/20 w-full sm:w-auto">
+                Back to Dashboard
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-neutral-900 py-8 text-[10px] text-neutral-700 font-light tracking-[0.2em] text-center w-full">
+        <p>&copy; 2026 JL MOBILE AUTO REPAIR & PERFORMANCE. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>
