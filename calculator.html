@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Quote Matrix | JL Mobile Auto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-[#050505] text-neutral-400 font-mono min-h-screen selection:bg-red-800 selection:text-white py-12 px-4">
+
+    <div class="max-w-5xl mx-auto">
+        <!-- Terminal Header -->
+        <div class="mb-8 border-b border-neutral-900 pb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <h1 class="text-xl font-bold uppercase tracking-[0.3em] text-white">
+                    JL MOBILE <span class="text-red-700">AUTO</span> // QUOTE CALCULATION MATRIX
+                </h1>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-neutral-500 mt-1">INTERNAL DISPATCH ENGINE — SYSTEM SECURED</p>
+            </div>
+            <button onclick="resetMatrix()" class="text-[10px] uppercase tracking-[0.2em] font-bold border border-neutral-800 hover:border-red-700 hover:text-white px-4 py-2 transition-colors">
+                <i class="fa-solid fa-rotate-left mr-2"></i> Reset Matrix
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left 2 Columns: Input Terminal -->
+            <div class="lg:col-span-2 space-y-6">
+                
+                <!-- Fixed Fees / Mobile Routing -->
+                <div class="bg-[#0a0a0a] border border-neutral-900 p-6 relative">
+                    <div class="absolute top-0 right-0 w-2 h-2 bg-red-700"></div>
+                    <h2 class="text-xs font-bold text-red-700 tracking-[0.2em] uppercase mb-4 border-b border-neutral-900 pb-2">01. Dispatch & Diagnostics</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 font-semibold text-neutral-400">Mobile Call-Out Fee ($)</label>
+                            <input type="number" id="dispatch_fee" value="50.00" oninput="calculateQuote()" class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-3 text-white focus:outline-none focus:border-red-700 transition-colors font-sans">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 font-semibold text-neutral-400">Diagnostic / Scanning Fee ($)</label>
+                            <input type="number" id="diag_fee" value="0.00" oninput="calculateQuote()" class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-3 text-white focus:outline-none focus:border-red-700 transition-colors font-sans">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Labor Calculations -->
+                <div class="bg-[#0a0a0a] border border-neutral-900 p-6">
+                    <h2 class="text-xs font-bold text-red-700 tracking-[0.2em] uppercase mb-4 border-b border-neutral-900 pb-2">02. Mechanical & Module Labor</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 font-semibold text-neutral-400">Hourly Labor Rate ($/hr)</label>
+                            <input type="number" id="labor_rate" value="120.00" oninput="calculateQuote()" class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-3 text-white focus:outline-none focus:border-red-700 transition-colors font-sans">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 font-semibold text-neutral-400">Estimated Clock Hours</label>
+                            <input type="number" id="labor_hours" value="1.0" step="0.5" oninput="calculateQuote()" class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-3 text-white focus:outline-none focus:border-red-700 transition-colors font-sans">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aftermarket Parts & Fluids Sourcing -->
+                <div class="bg-[#0a0a0a] border border-neutral-900 p-6">
+                    <h2 class="text-xs font-bold text-red-700 tracking-[0.2em] uppercase mb-4 border-b border-neutral-900 pb-2">03. Hardware Sourcing & Fluids (Taxable)</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="md:col-span-1">
+                            <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 font-semibold text-neutral-400">Parts Base Cost ($)</label>
+                            <input type="number" id="parts_cost" value="0.00" oninput="calculateQuote()" class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-3 text-white focus:outline-none focus:border-red-700 transition-colors font-sans">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 font-semibold text-neutral-400">Parts Markup (%)</label>
+                            <select id="parts_markup" onchange="calculateQuote()" class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-[14px] text-white focus:outline-none focus:border-red-700 transition-colors font-sans text-sm">
+                                <option value="0">0% (At Cost)</option>
+                                <option value="15">15% Markup</option>
+                                <option value="20">20% Markup</option>
+                                <option value="25" selected>25% Premium</option>
+                                <option value="35">35% Aggressive</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 font-semibold text-neutral-400">Fluids / Shop Supplies ($)</label>
+                            <input type="number" id="fluids_cost" value="15.00" oninput="calculateQuote()" class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-3 text-white focus:outline-none focus:border-red-700 transition-colors font-sans">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Live Output Statement -->
+            <div class="space-y-6">
+                <div class="bg-[#0a0a0a] border border-neutral-900 p-6 sticky top-6 flex flex-col justify-between h-full min-h-[460px]">
+                    <div>
+                        <h2 class="text-xs font-bold text-white tracking-[0.2em] uppercase mb-6 border-b border-neutral-900 pb-2 flex justify-between items-center">
+                            <span>Invoice Preview</span>
+                            <span class="text-[9px] text-neutral-600 font-normal">FL-7.0% CONFIRMATION</span>
+                        </h2>
+
+                        <!-- Price Breakdown Tickers -->
+                        <div class="space-y-4 text-xs tracking-wider">
+                            <div class="flex justify-between border-b border-neutral-900/50 pb-2">
+                                <span class="text-neutral-500 uppercase text-[10px]">Dispatch & Diag:</span>
+                                <span id="out_dispatch" class="text-white font-sans">$50.00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-neutral-900/50 pb-2">
+                                <span class="text-neutral-500 uppercase text-[10px]">Gross Labor:</span>
+                                <span id="out_labor" class="text-white font-sans">$120.00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-neutral-900/50 pb-2">
+                                <span class="text-neutral-500 uppercase text-[10px]">Marked-Up Parts:</span>
+                                <span id="out_parts" class="text-white font-sans">$0.00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-neutral-900/50 pb-2">
+                                <span class="text-neutral-500 uppercase text-[10px]">Fluids & Supplies:</span>
+                                <span id="out_fluids" class="text-white font-sans">$15.00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-neutral-900 pb-2 pt-2">
+                                <span class="text-neutral-500 uppercase text-[10px]">FL Sales Tax (7%):</span>
+                                <span id="out_tax" class="text-neutral-400 font-sans">$1.05</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mega Total Box -->
+                    <div class="mt-8 pt-6 border-t-2 border-dashed border-neutral-900">
+                        <div class="text-[10px] uppercase tracking-[0.25em] text-neutral-500 mb-1">Total Client Estimate</div>
+                        <div id="out_total" class="text-3xl font-bold text-red-700 tracking-tight font-sans">$186.05</div>
+                        
+                        <button onclick="copyToClipboard()" class="w-full bg-red-700 hover:bg-red-600 text-white font-bold uppercase tracking-[0.2em] py-4 text-[11px] rounded-none mt-6 transition-colors duration-300 shadow-xl flex justify-center items-center gap-2">
+                            <i class="fa-regular fa-copy"></i> Copy Quote Text
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Pricing Mechanics -->
+    <script>
+        function calculateQuote() {
+            // Get raw input values
+            const dispatchFee = parseFloat(document.getElementById('dispatch_fee').value) || 0;
+            const diagFee = parseFloat(document.getElementById('diag_fee').value) || 0;
+            const laborRate = parseFloat(document.getElementById('labor_rate').value) || 0;
+            const laborHours = parseFloat(document.getElementById('labor_hours').value) || 0;
+            const partsBase = parseFloat(document.getElementById('parts_cost').value) || 0;
+            const partsMarkup = parseFloat(document.getElementById('parts_markup').value) || 0;
+            const fluidsCost = parseFloat(document.getElementById('fluids_cost').value) || 0;
+
+            // Run calculations
+            const totalDispatch = dispatchFee + diagFee;
+            const totalLabor = laborRate * laborHours;
+            const totalParts = partsBase * (1 + (partsMarkup / 100));
+            
+            // Tax Rules: Florida taxes parts and shop supplies/fluids, but labor is exempt if itemized
+            const taxableSubtotal = totalParts + fluidsCost;
+            const salesTax = taxableSubtotal * 0.07;
+
+            const finalInvoiceTotal = totalDispatch + totalLabor + taxableSubtotal + salesTax;
+
+            // Render calculations into view panel
+            document.getElementById('out_dispatch').innerText = `$${totalDispatch.toFixed(2)}`;
+            document.getElementById('out_labor').innerText = `$${totalLabor.toFixed(2)}`;
+            document.getElementById('out_parts').innerText = `$${totalParts.toFixed(2)}`;
+            document.getElementById('out_fluids').innerText = `$${fluidsCost.toFixed(2)}`;
+            document.getElementById('out_tax').innerText = `$${salesTax.toFixed(2)}`;
+            document.getElementById('out_total').innerText = `$${finalInvoiceTotal.toFixed(2)}`;
+        }
+
+        function copyToClipboard() {
+            const total = document.getElementById('out_total').innerText;
+            const dispatch = document.getElementById('out_dispatch').innerText;
+            const labor = document.getElementById('out_labor').innerText;
+            const parts = document.getElementById('out_parts').innerText;
+            const fluids = document.getElementById('out_fluids').innerText;
+            const tax = document.getElementById('out_tax').innerText;
+
+            const summaryText = `JL MOBILE AUTO REPAIR // ESTIMATE SUMMARY\n` +
+                                `------------------------------------\n` +
+                                `• Dispatch & Diagnostics: ${dispatch}\n` +
+                                `• Precision Labor Summary: ${labor}\n` +
+                                `• Components & Hardware: ${parts}\n` +
+                                `• Fluids & Shop Supplies: ${fluids}\n` +
+                                `• State Sales Tax (7.0%): ${tax}\n` +
+                                `------------------------------------\n` +
+                                `TOTAL ESTIMATED BALANCE: ${total}\n\n` +
+                                `Thank you for choosing JL Mobile Auto. Reply to secure your diagnostic slot.`;
+
+            navigator.clipboard.writeText(summaryText);
+            
+            // Temporary button confirmation state
+            const btn = document.querySelector('button[onclick="copyToClipboard()"]');
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-check text-green-500"></i> Copied to Clipboard!`;
+            btn.className = btn.className.replace('bg-red-700', 'bg-neutral-900 border border-neutral-800');
+            
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                btn.className = btn.className.replace('bg-neutral-900 border border-neutral-800', 'bg-red-700');
+            }, 2000);
+        }
+
+        function resetMatrix() {
+            document.getElementById('dispatch_fee').value = "50.00";
+            document.getElementById('diag_fee').value = "0.00";
+            document.getElementById('labor_rate').value = "120.00";
+            document.getElementById('labor_hours').value = "1.0";
+            document.getElementById('parts_cost').value = "0.00";
+            document.getElementById('parts_markup').value = "25";
+            document.getElementById('fluids_cost').value = "15.00";
+            calculateQuote();
+        }
+
+        // Initialize calculations instantly on page load
+        window.onload = calculateQuote;
+    </script>
+</body>
+</html>
