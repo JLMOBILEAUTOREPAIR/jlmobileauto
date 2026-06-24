@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Quote | JL Mobile Auto Repair</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar to match the sleek dark theme */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb:hover { background: #991b1b; }
+    </style>
+</head>
+<body class="bg-[#050505] text-neutral-400 font-mono selection:bg-red-800 selection:text-white min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navigation Stub -->
+    <header class="border-b border-neutral-900 bg-[#050505]/90 backdrop-blur sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-white font-bold tracking-[0.25em] text-sm hover:text-red-700 transition-colors">
+            JL MOBILE <span class="text-red-700">AUTO</span>
+        </a>
+        <a href="index.html" class="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-500 hover:text-white transition-colors">
+            &larr; Back to Terminal
+        </a>
+    </header>
+
+    <!-- Main Section -->
+    <section class="py-12 px-4 max-w-4xl mx-auto w-full flex-grow">
+        <div class="mb-10 text-center md:text-left">
+            <h1 class="text-2xl md:text-3xl font-bold uppercase tracking-[0.3em] text-white mb-3">
+                Request Field Estimate
+            </h1>
+            <p class="text-xs uppercase tracking-[0.15em] text-neutral-500 max-w-xl leading-relaxed">
+                Provide your build specs and service configuration below. Our mobile diagnostic unit will review your hardware profiles and dispatch a secure digital quote.
+            </p>
+        </div>
+
+        <!-- Form Wrapper -->
+        <div class="bg-[#0a0a0a] border border-neutral-900 p-6 md:p-10 shadow-2xl relative">
+            <!-- Decorative corner accent -->
+            <div class="absolute top-0 right-0 w-2 h-2 bg-red-700"></div>
+
+            <form action="https://api.web3forms.com/submit" method="POST" class="space-y-8 text-[11px] tracking-[0.2em] font-bold uppercase text-neutral-400">
+                
+                <!-- Web3Forms Credentials -->
+                <input type="hidden" name="access_key" value="996b9886-4717-4ae5-bca6-18cf167b1225">
+                <input type="hidden" name="redirect" value="https://jlmobileautorepair.github.io/jlmobileauto/thanks.html">
+                <input type="hidden" name="subject" value="NEW QUOTE REQUEST FROM SITE">
+
+                <!-- Section 1: Client Metadata -->
+                <div>
+                    <h2 class="text-xs text-red-700 tracking-[0.25em] mb-4 border-b border-neutral-900 pb-2">01. Fleet Contact Details</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block mb-2 text-neutral-400 font-semibold">Client Name</label>
+                            <input type="text" name="quote_name" required class="w-full bg-[#050505] border border-neutral-900 rounded-none px-4 py-4 text-white font-normal normal-case focus:outline-none focus:border-red-800 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-neutral-400 font-semibold">Secure Phone Number</label>
+                            <input type="tel" name="quote_phone" required class="w-full bg-[#050505] border border-neutral-900 rounded-none px-4 py-4 text-white font-normal normal-case focus:outline-none focus:border-red-800 transition-colors">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Hardware Profile -->
+                <div>
+                    <h2 class="text-xs text-red-700 tracking-[0.25em] mb-4 border-b border-neutral-900 pb-2">02. Asset Configuration</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block mb-2 text-neutral-400 font-semibold">Year</label>
+                            <input type="text" name="quote_year" placeholder="e.g. 2012" required class="w-full bg-[#050505] border border-neutral-900 rounded-none px-4 py-4 text-white font-normal normal-case focus:outline-none focus:border-red-800 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-neutral-400 font-semibold">Make</label>
+                            <input type="text" name="quote_make" placeholder="e.g. Toyota" required class="w-full bg-[#050505] border border-neutral-900 rounded-none px-4 py-4 text-white font-normal normal-case focus:outline-none focus:border-red-800 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-neutral-400 font-semibold">Model / Trim</label>
+                            <input type="text" name="quote_model" placeholder="e.g. Corolla S" required class="w-full bg-[#050505] border border-neutral-900 rounded-none px-4 py-4 text-white font-normal normal-case focus:outline-none focus:border-red-800 transition-colors">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Field Diagnostics & Scope -->
+                <div>
+                    <h2 class="text-xs text-red-700 tracking-[0.25em] mb-4 border-b border-neutral-900 pb-2">03. Scope of Operational Service</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block mb-2 text-neutral-400 font-semibold">Primary Focus Matrix</label>
+                            <select name="quote_service_matrix" class="w-full bg-[#050505] border border-neutral-900 rounded-none px-4 py-4 text-white font-normal normal-case text-xs focus:outline-none focus:border-red-800 transition-colors">
+                                <option>Aftermarket Upgrades (Lowering Profiles, Custom Mod Elements)</option>
+                                <option>Advanced Diagnostic Routines & Module Scanning</option>
+                                <option>Precision Mechanical Repairs & Chassis Services</option>
+                                <option>Emergency Component Failure Assessment</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-neutral-400 font-semibold">Urgency Deployment Profile</label>
+                            <select name="quote_urgency" class="w-full bg-[#050505] border border-neutral-900 rounded-none px-4 py-4 text-white font-normal normal-case text-xs focus:outline-none focus:border-red-800 transition-colors">
+                                <option>Standard Routine Assessment (Within 48 Hours)</option>
+                                <option>Priority Action Allocation (Within 24 Hours)</option>
+                                <option>Immediate Dispatch Logistics Needed</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-neutral-400 font-semibold">Target Service Location / ZIP Code</label>
+                        <input type="text" name="quote_location" placeholder="e.g. 33023, Miramar, Hollywood FL" required class="w-full bg-[#050505] border border-neutral-900 rounded-none px-4 py-4 text-white font-normal normal-case focus:outline-none focus:border-red-800 transition-colors mb-6">
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-neutral-400 font-semibold">Technical Symptoms & Clearance Profiles</label>
+                        <textarea name="quote_specs_and_symptoms" rows="5" placeholder="List active CEL codes, bolt clearance profiles, specific aftermarket part links, or chassis clearance restrictions..." required class="w-full bg-[#050505] border border-neutral-900 rounded-none px-4 py-4 text-white font-normal normal-case focus:outline-none focus:border-red-800 transition-colors"></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit Trigger -->
+                <button type="submit" class="w-full bg-red-700 hover:bg-red-600 text-white font-bold uppercase tracking-[0.25em] py-5 rounded-none text-xs transition-colors duration-300 shadow-xl border border-transparent active:border-red-500">
+                    Generate & Submit Quote Protocol
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="border-t border-neutral-900 bg-[#050505] px-6 py-6 text-center text-[10px] uppercase tracking-[0.2em] text-neutral-600">
+        &copy; 2026 JL MOBILE AUTO REPAIR. OPERATIONS SECURED.
+    </footer>
+
+</body>
+</html>
