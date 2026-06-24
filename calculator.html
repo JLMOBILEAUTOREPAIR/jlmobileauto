@@ -6,17 +6,52 @@
     <title>Internal Quote Matrix | JL Mobile Auto</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS Print Stylesheet overrides to instantly turn this into a clean, printable white customer sheet */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-family: Arial, sans-serif !important;
+                padding: 0 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-invoice-box {
+                background: #ffffff !important;
+                border: 1px solid #000000 !important;
+                box-shadow: none !important;
+                color: #000000 !important;
+                width: 100% !important;
+                position: static !important;
+                min-height: auto !important;
+            }
+            .print-text-dark {
+                color: #000000 !important;
+            }
+            .print-text-muted {
+                color: #444444 !important;
+            }
+            .print-border-dark {
+                border-color: #e5e5e5 !important;
+            }
+            .print-total-text {
+                color: #b91c1c !important;
+            }
+        }
+    </style>
 </head>
 <body class="bg-[#050505] text-neutral-400 font-mono min-h-screen selection:bg-red-800 selection:text-white py-12 px-4">
 
     <div class="max-w-5xl mx-auto">
-        <!-- Terminal Header -->
-        <div class="mb-8 border-b border-neutral-900 pb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <!-- Terminal Header (Hidden on Print) -->
+        <div class="mb-8 border-b border-neutral-900 pb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 no-print">
             <div>
                 <h1 class="text-xl font-bold uppercase tracking-[0.3em] text-white">
-                    JL MOBILE <span class="text-red-700">AUTO</span> // QUOTE CALCULATION MATRIX
+                    JL MOBILE <span class="text-red-700">AUTO</span> // SERVICE PRICE CONFIGURATOR
                 </h1>
-                <p class="text-[10px] uppercase tracking-[0.2em] text-neutral-500 mt-1">INTERNAL DISPATCH ENGINE — SYSTEM SECURED</p>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-neutral-500 mt-1">INTERNAL CALCULATOR ENGINE // DISPATCH CONSOLE</p>
             </div>
             <button onclick="resetMatrix()" class="text-[10px] uppercase tracking-[0.2em] font-bold border border-neutral-800 hover:border-red-700 hover:text-white px-4 py-2 transition-colors">
                 <i class="fa-solid fa-rotate-left mr-2"></i> Reset Matrix
@@ -24,8 +59,8 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Left 2 Columns: Input Terminal -->
-            <div class="lg:col-span-2 space-y-6">
+            <!-- Left 2 Columns: Input Terminal (Hidden on Print) -->
+            <div class="lg:col-span-2 space-y-6 no-print">
                 
                 <!-- Fixed Fees / Mobile Routing -->
                 <div class="bg-[#0a0a0a] border border-neutral-900 p-6 relative">
@@ -60,7 +95,7 @@
 
                 <!-- Aftermarket Parts & Fluids Sourcing -->
                 <div class="bg-[#0a0a0a] border border-neutral-900 p-6">
-                    <h2 class="text-xs font-bold text-red-700 tracking-[0.2em] uppercase mb-4 border-b border-neutral-900 pb-2">03. Hardware Sourcing & Fluids (Taxable)</h2>
+                    <h2 class="text-xs font-bold text-red-700 tracking-[0.2em] uppercase mb-4 border-b border-neutral-900 pb-2">03. Hardware Sourcing & Fluids</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div class="md:col-span-1">
                             <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 font-semibold text-neutral-400">Parts Base Cost ($)</label>
@@ -84,55 +119,74 @@
                 </div>
             </div>
 
-            <!-- Right Column: Live Output Statement -->
-            <div class="space-y-6">
-                <div class="bg-[#0a0a0a] border border-neutral-900 p-6 sticky top-6 flex flex-col justify-between h-full min-h-[460px]">
+            <!-- Right Column: Printable Output Statement Sheet & Direct Text Exporter -->
+            <div class="lg:col-span-1">
+                <div class="bg-[#0a0a0a] border border-neutral-900 p-6 sticky top-6 flex flex-col justify-between h-full min-h-[520px] print-invoice-box">
                     <div>
-                        <h2 class="text-xs font-bold text-white tracking-[0.2em] uppercase mb-6 border-b border-neutral-900 pb-2 flex justify-between items-center">
-                            <span>Invoice Preview</span>
-                            <span class="text-[9px] text-neutral-600 font-normal">FL-7.0% CONFIRMATION</span>
-                        </h2>
+                        <!-- Invoice Header Info -->
+                        <div class="mb-6 border-b border-neutral-900 pb-4 print-border-dark flex justify-between items-start">
+                            <div>
+                                <h2 class="text-sm font-bold text-white tracking-[0.2em] uppercase print-text-dark">
+                                    JL MOBILE <span class="text-red-700">AUTO</span>
+                                </h2>
+                                <p class="text-[9px] text-neutral-500 uppercase tracking-widest mt-1 print-text-muted">Mobile Diagnostic & Repair</p>
+                            </div>
+                            <div class="text-right">
+                                <h3 class="text-xs font-bold text-white uppercase tracking-wider print-text-dark">ESTIMATE SHEET</h3>
+                                <p id="invoice_date" class="text-[9px] text-neutral-500 font-sans print-text-muted"></p>
+                            </div>
+                        </div>
 
                         <!-- Price Breakdown Tickers -->
                         <div class="space-y-4 text-xs tracking-wider">
-                            <div class="flex justify-between border-b border-neutral-900/50 pb-2">
-                                <span class="text-neutral-500 uppercase text-[10px]">Dispatch & Diag:</span>
-                                <span id="out_dispatch" class="text-white font-sans">$50.00</span>
+                            <div class="flex justify-between border-b border-neutral-900/50 print-border-dark pb-2">
+                                <span class="text-neutral-500 uppercase text-[10px] print-text-muted">Dispatch & Field Travel:</span>
+                                <span id="out_dispatch" class="text-white font-sans print-text-dark">$50.00</span>
                             </div>
-                            <div class="flex justify-between border-b border-neutral-900/50 pb-2">
-                                <span class="text-neutral-500 uppercase text-[10px]">Gross Labor:</span>
-                                <span id="out_labor" class="text-white font-sans">$120.00</span>
+                            <div class="flex justify-between border-b border-neutral-900/50 print-border-dark pb-2">
+                                <span class="text-neutral-500 uppercase text-[10px] print-text-muted">Precision Service Labor:</span>
+                                <span id="out_labor" class="text-white font-sans print-text-dark">$120.00</span>
                             </div>
-                            <div class="flex justify-between border-b border-neutral-900/50 pb-2">
-                                <span class="text-neutral-500 uppercase text-[10px]">Marked-Up Parts:</span>
-                                <span id="out_parts" class="text-white font-sans">$0.00</span>
+                            <div class="flex justify-between border-b border-neutral-900/50 print-border-dark pb-2">
+                                <span class="text-neutral-500 uppercase text-[10px] print-text-muted">Components & Hardware:</span>
+                                <span id="out_parts" class="text-white font-sans print-text-dark">$0.00</span>
                             </div>
-                            <div class="flex justify-between border-b border-neutral-900/50 pb-2">
-                                <span class="text-neutral-500 uppercase text-[10px]">Fluids & Supplies:</span>
-                                <span id="out_fluids" class="text-white font-sans">$15.00</span>
+                            <div class="flex justify-between border-b border-neutral-900/50 print-border-dark pb-2">
+                                <span class="text-neutral-500 uppercase text-[10px] print-text-muted">Fluids & Shop Supplies:</span>
+                                <span id="out_fluids" class="text-white font-sans print-text-dark">$15.00</span>
                             </div>
-                            <div class="flex justify-between border-b border-neutral-900 pb-2 pt-2">
-                                <span class="text-neutral-500 uppercase text-[10px]">FL Sales Tax (7%):</span>
-                                <span id="out_tax" class="text-neutral-400 font-sans">$1.05</span>
+                            <div class="flex justify-between border-b border-neutral-900 print-border-dark pb-2 pt-2">
+                                <span class="text-neutral-500 uppercase text-[10px] print-text-muted">FL Sales Tax (7.0%):</span>
+                                <span id="out_tax" class="text-neutral-400 font-sans print-text-dark">$1.05</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Mega Total Box -->
-                    <div class="mt-8 pt-6 border-t-2 border-dashed border-neutral-900">
-                        <div class="text-[10px] uppercase tracking-[0.25em] text-neutral-500 mb-1">Total Client Estimate</div>
-                        <div id="out_total" class="text-3xl font-bold text-red-700 tracking-tight font-sans">$186.05</div>
+                    <!-- Invoice Footer & Operations Box -->
+                    <div class="mt-8 pt-6 border-t border-neutral-900 print-border-dark">
+                        <div class="text-[10px] uppercase tracking-[0.25em] text-neutral-500 mb-1 print-text-muted">Total Estimated Balance</div>
+                        <div id="out_total" class="text-3xl font-bold text-red-700 tracking-tight font-sans print-total-text">$186.05</div>
                         
-                        <button onclick="copyToClipboard()" class="w-full bg-red-700 hover:bg-red-600 text-white font-bold uppercase tracking-[0.2em] py-4 text-[11px] rounded-none mt-6 transition-colors duration-300 shadow-xl flex justify-center items-center gap-2">
-                            <i class="fa-regular fa-copy"></i> Copy Quote Text
-                        </button>
+                        <p class="text-[8px] uppercase tracking-wider text-neutral-600 mt-4 leading-normal print-text-muted">
+                            Estimates are valid for 30 days. Labor figures are based on clear mechanical accessibility profiles.
+                        </p>
+
+                        <!-- Action Controls (Hidden completely during prints/PDF exports) -->
+                        <div class="space-y-3 mt-6 no-print">
+                            <button onclick="copyToClipboard()" class="w-full bg-[#111] hover:bg-neutral-900 text-white font-bold uppercase tracking-[0.2em] py-4 text-[11px] rounded-none border border-neutral-800 transition-colors duration-300 shadow-xl flex justify-center items-center gap-2">
+                                <i class="fa-regular fa-copy"></i> Copy Quote Text for Client
+                            </button>
+                            <button onclick="window.print()" class="w-full bg-red-700 hover:bg-red-600 text-white font-bold uppercase tracking-[0.2em] py-4 text-[11px] rounded-none transition-colors duration-300 shadow-xl flex justify-center items-center gap-2">
+                                <i class="fa-solid fa-print"></i> Print / Save as PDF
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript Pricing Mechanics -->
+    <!-- JavaScript Pricing & Sharing Mechanics -->
     <script>
         function calculateQuote() {
             // Get raw input values
@@ -149,7 +203,7 @@
             const totalLabor = laborRate * laborHours;
             const totalParts = partsBase * (1 + (partsMarkup / 100));
             
-            // Tax Rules: Florida taxes parts and shop supplies/fluids, but labor is exempt if itemized
+            // Florida Sales Tax Rules (Isolate parts and fluids, exempt labor)
             const taxableSubtotal = totalParts + fluidsCost;
             const salesTax = taxableSubtotal * 0.07;
 
@@ -165,36 +219,46 @@
         }
 
         function copyToClipboard() {
+            const dateStr = document.getElementById('invoice_date').innerText;
             const total = document.getElementById('out_total').innerText;
             const dispatch = document.getElementById('out_dispatch').innerText;
             const labor = document.getElementById('out_labor').innerText;
             const parts = document.getElementById('out_parts').innerText;
             const fluids = document.getElementById('out_fluids').innerText;
             const tax = document.getElementById('out_tax').innerText;
-
-            const summaryText = `JL MOBILE AUTO REPAIR // ESTIMATE SUMMARY\n` +
-                                `------------------------------------\n` +
-                                `• Dispatch & Diagnostics: ${dispatch}\n` +
-                                `• Precision Labor Summary: ${labor}\n` +
-                                `• Components & Hardware: ${parts}\n` +
-                                `• Fluids & Shop Supplies: ${fluids}\n` +
-                                `• State Sales Tax (7.0%): ${tax}\n` +
-                                `------------------------------------\n` +
-                                `TOTAL ESTIMATED BALANCE: ${total}\n\n` +
-                                `Thank you for choosing JL Mobile Auto. Reply to secure your diagnostic slot.`;
-
-            navigator.clipboard.writeText(summaryText);
             
-            // Temporary button confirmation state
+            // Capture accurate input variables for the template string
+            const hoursVal = document.getElementById('labor_hours').value;
+
+            // Structured Premium Customer Quote Format Layout
+            const customerQuoteText = 
+                `⚡ JL MOBILE AUTO REPAIR // OFFICIAL ESTIMATE\n` +
+                `DATE ISSUED: ${dateStr}\n` +
+                `STATUS: PROVISIONED DISPATCH\n` +
+                `==========================================\n\n` +
+                `Thank you for requesting an operational breakdown. Below is your structured configuration:\n\n` +
+                `  • Mobile Dispatch & Field Travel : ${dispatch}\n` +
+                `  • Precision Service Labor (${hoursVal} hrs) : ${labor}\n` +
+                `  • Components & Hardware Sourcing : ${parts}\n` +
+                `  • Fluids & Shop Safety Supplies  : ${fluids}\n` +
+                `  • Florida State Sales Tax (7.0%) : ${tax}\n` +
+                `------------------------------------------\n` +
+                `TOTAL ESTIMATED BALANCE: ${total}\n\n` +
+                `==========================================\n` +
+                `• Rates are guaranteed for 30 days.\n` +
+                `• To confirm this booking and secure your field diagnostics window, please reply directly to this thread.\n\n` +
+                `OPERATIONS SECURED // JL MOBILE AUTO`;
+
+            navigator.clipboard.writeText(customerQuoteText);
+            
+            // Interactive visual indicator for confirmation
             const btn = document.querySelector('button[onclick="copyToClipboard()"]');
             const originalContent = btn.innerHTML;
-            btn.innerHTML = `<i class="fa-solid fa-check text-green-500"></i> Copied to Clipboard!`;
-            btn.className = btn.className.replace('bg-red-700', 'bg-neutral-900 border border-neutral-800');
+            btn.innerHTML = `<i class="fa-solid fa-check text-green-500"></i> Quote Copied to Clipboard!`;
             
             setTimeout(() => {
                 btn.innerHTML = originalContent;
-                btn.className = btn.className.replace('bg-neutral-900 border border-neutral-800', 'bg-red-700');
-            }, 2000);
+            }, 2500);
         }
 
         function resetMatrix() {
@@ -208,8 +272,17 @@
             calculateQuote();
         }
 
-        // Initialize calculations instantly on page load
-        window.onload = calculateQuote;
+        function setInvoiceDate() {
+            const today = new Date();
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            document.getElementById('invoice_date').innerText = today.toLocaleDateString('en-US', options).toUpperCase();
+        }
+
+        // Initialize script logic cleanly on runtime boot
+        window.onload = function() {
+            calculateQuote();
+            setInvoiceDate();
+        };
     </script>
 </body>
 </html>
