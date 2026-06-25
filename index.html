@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JL Mobile Auto Repair & Performance</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+    <!-- Load the exact Geist and Geist Mono Fonts from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap" rel="stylesheet">
@@ -18,17 +21,6 @@
         }
         .font-sans-custom {
             font-family: 'Geist', sans-serif !important;
-        }
-        
-        /* Smooth custom utility for handling dynamic tab opacity transitions */
-        .tab-content {
-            transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-        }
-        .tab-hidden {
-            opacity: 0;
-            transform: translateY(4px);
-            pointer-events: none;
-            position: absolute;
         }
 
         /* Custom scrollbar layout styling */
@@ -42,6 +34,7 @@
 
     <div class="max-w-5xl mx-auto space-y-12">
         
+        <!-- MAIN TERMINAL HEADER BAR -->
         <header class="border-b border-neutral-900 pb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
                 <h1 class="text-xl font-bold uppercase tracking-[0.3em] text-white">
@@ -56,52 +49,95 @@
             </div>
         </header>
 
-        <section class="border border-neutral-900 bg-[#050505] p-1">
-            <div class="flex flex-col md:flex-row border-b border-neutral-900 gap-1 md:gap-0 bg-[#020202]">
-                <button type="button" onclick="switchTab('about')" id="tab-btn-about" class="px-6 py-4 text-xs uppercase tracking-[0.2em] font-bold text-white border-b-2 border-red-700 bg-[#0a0a0a]/50 md:bg-transparent transition-all duration-200 focus:outline-none text-left md:text-center">
-                    [01] About Me
-                </button>
-                <button type="button" onclick="switchTab('repair')" id="tab-btn-repair" class="px-6 py-4 text-xs uppercase tracking-[0.2em] font-bold text-neutral-500 hover:text-white border-b-2 border-transparent transition-all duration-200 focus:outline-none text-left md:text-center">
-                    [02] Repair & Diagnostics
-                </button>
-                <button type="button" onclick="switchTab('performance')" id="tab-btn-performance" class="px-6 py-4 text-xs uppercase tracking-[0.2em] font-bold text-neutral-500 hover:text-white border-b-2 border-transparent transition-all duration-200 focus:outline-none text-left md:text-center">
-                    [03] Aftermarket Performance
-                </button>
+        <!-- WELCOME MATRIX ARCHITECTURE -->
+        <section class="bg-[#0a0a0a] border border-neutral-900 p-6 md:p-10 relative">
+            <div class="absolute top-0 right-0 w-2 h-2 bg-red-700"></div>
+            <h2 class="text-xs text-white font-bold tracking-[0.2em] uppercase mb-4">System Operator Profile</h2>
+            <div class="space-y-4 text-xs leading-relaxed tracking-wider font-sans-custom text-neutral-300">
+                <p>
+                    Welcome to the digital dispatch node for JL Mobile Auto Repair & Performance. I provide high-tier mobile diagnostics, precise mechanical interventions, and custom performance solutions engineered directly at your location.
+                </p>
+                <p>
+                    Using professional diagnostic matrices and a strict transparency pricing framework, my field service structure bypasses the overhead markups of commercial auto shops to pass efficiency directly to the client. Use the tracking terminal below to initiate a field request queue.
+                </p>
+            </div>
+        </section>
+
+        <!-- BOOKING ROUTING & DISPATCH INTAKE PORTAL FORM -->
+        <section class="bg-[#0a0a0a] border border-neutral-900 p-6 md:p-10 relative">
+            <div class="absolute top-0 right-0 w-2 h-2 bg-red-700"></div>
+            
+            <div class="mb-8 border-b border-neutral-900 pb-4">
+                <h2 class="text-sm font-bold text-white tracking-[0.2em] uppercase">Secure Dispatch Request Portal</h2>
+                <p class="text-[9px] uppercase tracking-[0.15em] text-neutral-500 mt-1">Submit technical inputs below to authorize field queue provisioning</p>
             </div>
 
-            <div class="bg-[#0a0a0a] p-6 md:p-10 relative min-h-[320px] overflow-hidden">
-                <div class="absolute top-0 right-0 w-2 h-2 bg-red-700"></div>
+            <!-- Integrated Web3Forms Action Link Core Framework with Native Onsubmit alert check -->
+            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="return confirmPolicyAgreement()" class="space-y-6 text-[11px] tracking-[0.2em] font-bold uppercase text-neutral-400">
+                
+                <!-- Web3Forms Secure Access Keys -->
+                <input type="hidden" name="access_key" value="996b9886-4717-4ae5-bca6-18cf167b1225">
+                <input type="hidden" name="redirect" value="https://jlmobileautorepair.github.io/jlmobileauto/thanks.html">
 
-                <div id="tab-content-about" class="tab-content space-y-4">
-                    <h2 class="text-xs text-white font-bold tracking-[0.2em] uppercase mb-4">
-                        <span class="text-red-700">System Operator //</span> Jullien Lazo
-                    </h2>
-                    <p class="text-xs leading-relaxed tracking-wider font-sans-custom text-neutral-300">
-                        I am an ASE-certified automotive technician and digital content creator dedicated to modernizing mobile vehicle diagnostics and technical track-side support. Operating across the South Florida grid, I founded this infrastructure to transition away from traditional, restrictive brick-and-mortar mechanics' models.
-                    </p>
-                    <p class="text-xs leading-relaxed tracking-wider font-sans-custom text-neutral-300">
-                        By combining raw mechanical proficiency with advanced diagnostic hardware, my goal is to give vehicle owners premium, transparent service right at their location—providing professional expertise without the commercial dealership markup.
-                    </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 text-neutral-400">Client Profile Name</label>
+                        <input type="text" name="name" required placeholder="FIRST & LAST NAME" class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-3 text-white focus:outline-none focus:border-red-700 transition-colors tracking-widest">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 text-neutral-400">Communications Link (Email)</label>
+                        <input type="email" name="email" required placeholder="NAME@DOMAIN.COM" class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-3 text-white focus:outline-none focus:border-red-700 transition-colors tracking-widest">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 text-neutral-400">Cell Contact Channel (Phone)</label>
+                        <input type="tel" name="phone" required placeholder="(555) 000-0000" class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-3 text-white focus:outline-none focus:border-red-700 transition-colors tracking-widest">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 text-neutral-400">Vehicle Specification Node</label>
+                        <input type="text" name="vehicle" required placeholder="YEAR / MAKE / MODEL / TRIM" class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-3 text-white focus:outline-none focus:border-red-700 transition-colors tracking-widest">
+                    </div>
                 </div>
 
-                <div id="tab-content-repair" class="tab-content tab-hidden space-y-4 w-full left-0 px-0 md:px-2">
-                    <h2 class="text-xs text-white font-bold tracking-[0.2em] uppercase mb-4">
-                        <span class="text-red-700">Subsystem 02 //</span> Precision Diagnostics & Repair
-                    </h2>
-                    <p class="text-xs leading-relaxed tracking-wider font-sans-custom text-neutral-300">
-                        Traditional troubleshooting often relies on throwing parts at a problem. My operation uses dedicated pinpoint troubleshooting protocols and advanced computer module scanning to identify mechanical failures with absolute certainty before turning a wrench.
-                    </p>
-                    <ul class="list-disc pl-5 text-[11px] tracking-widest text-neutral-400 space-y-2 uppercase">
-                        <li>Advanced OBD2 Data Stream Analysis & Error Clearing</li>
-                        <li>Brake Infrastructure & Hydraulic Line Calibrations</li>
-                        <li>Electrical Architecture Pinpoint Testing & Rewiring</li>
-                        <li>Engine Ancillary Components & Cooling Loop Replacements</li>
-                    </ul>
+                <div>
+                    <label class="block text-[10px] uppercase tracking-[0.2em] mb-2 text-neutral-400">Diagnostics Parameters & Symptoms</label>
+                    <textarea name="message" rows="4" required placeholder="PROVIDE DETAILED ACCOUNT OF MECHANICAL SYMPTOMS OR PERFORMANCE REQUISITIONS..." class="w-full bg-[#050505] border border-neutral-800 rounded-none px-4 py-3 text-white focus:outline-none focus:border-red-700 transition-colors tracking-wider normal-case font-sans-custom text-xs leading-relaxed"></textarea>
                 </div>
 
-                <div id="tab-content-performance" class="tab-content tab-hidden space-y-4 w-full left-0 px-0 md:px-2">
-                    <h2 class="text-xs text-white font-bold tracking-[0.2em] uppercase mb-4">
-                        <span class="text-red-700">Subsystem 03 //</span> Performance Configurations
-                    </h2>
-                    <p class="text-xs leading-relaxed tracking-wider font-sans-custom text-neutral-300">
-                        Beyond standard maintenance, I specialize in fine-tuning track, street, and show platforms. From correcting axle binding geometry on lowered
+                <!-- Submit Action Controls -->
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-red-700 hover:bg-red-600 text-white font-bold uppercase tracking-[0.25em] py-5 rounded-none text-xs transition-colors duration-300 shadow-xl border border-transparent active:border-red-500">
+                        Submit Consultation Request
+                    </button>
+                    
+                    <p class="text-[9px] uppercase tracking-[0.15em] text-neutral-500 mt-4 text-center normal-case font-normal leading-relaxed font-sans-custom">
+                        By submitting this request, you acknowledge that you have read and agree to our official 
+                        <a href="policies.html" class="text-red-700 hover:text-red-500 underline underline-offset-4 font-bold tracking-wider uppercase text-[10px] transition-colors">
+                            Operational Policies & Terms of Service
+                        </a>.
+                    </p>
+                </div>
+            </form>
+        </section>
+
+        <!-- Main Operational Layout Footer Links -->
+        <footer class="border-t border-neutral-900 bg-[#050505] px-6 py-8 text-center text-[10px] uppercase tracking-[0.2em] text-neutral-600 space-y-3">
+            <div>&copy; 2026 JL MOBILE AUTO REPAIR & PERFORMANCE. OPERATIONS SECURED.</div>
+            <div class="pt-1">
+                <a href="policies.html" class="hover:text-neutral-300 transition-colors underline underline-offset-4 tracking-widest">
+                    Business Policies & Terms of Service
+                </a>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Core Terminal Dynamic Operations Script Engines -->
+    <script>
+        // Professional Policy Agreement Alert Prompt Logic
+        function confirmPolicyAgreement() {
+            const agreement = confirm("JL MOBILE AUTO REPAIR\n\nBy proceeding with this submission, you verify that you have read, understood, and agree to our official Business Policies & Terms of Service, including our diagnostic frameworks and cancellation guidelines.\n\nClick 'OK' to authorize dispatch transmission.");
+            return agreement; 
+        }
+    </script>
+</body>
+</html>
