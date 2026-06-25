@@ -6,7 +6,20 @@
     <title>Business Policies & Terms | JL Mobile Auto</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load the exact Geist and Geist Mono Fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
     <style>
+        /* Apply the exact terminal font profile overrides */
+        body, input, select, textarea, button {
+            font-family: 'Geist Mono', monospace !important;
+        }
+        .font-sans-custom {
+            font-family: 'Geist', sans-serif !important;
+        }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: #1a1a1a; }
@@ -36,7 +49,7 @@
             <p class="text-xs uppercase tracking-[0.15em] text-red-700 font-bold mb-4">
                 JL MOBILE AUTO REPAIR & PERFORMANCE // BUSINESS POLICIES & TERMS OF SERVICE
             </p>
-            <p class="text-xs uppercase tracking-[0.15em] text-neutral-500 max-w-2xl leading-relaxed normal-case">
+            <p class="text-xs uppercase tracking-[0.15em] text-neutral-500 max-w-2xl leading-relaxed normal-case font-sans-custom">
                 Welcome to JL MOBILE AUTO REPAIR & PERFORMANCE. Because I bring a fully equipped mobile shop directly to your driveway or workplace, my operations differ slightly from a traditional brick-and-mortar garage. Please review my core policies regarding bookings, pricing, and warranties below.
             </p>
         </div>
@@ -52,10 +65,10 @@
                     <span class="text-red-700">01 //</span> Booking Deposits & Cancellation Policy
                 </h2>
                 <div class="text-[11px] tracking-[0.15em] uppercase text-neutral-400 space-y-3 pl-6 border-l border-neutral-900">
-                    <p class="normal-case font-normal leading-relaxed text-neutral-300">
+                    <p class="normal-case font-normal leading-relaxed text-neutral-300 font-sans-custom">
                         To protect my schedule and cover immediate fuel and travel expenses, I require a <strong class="text-white font-bold">non-refundable booking deposit</strong> to secure your mobile appointment slot.
                     </p>
-                    <ul class="list-disc pl-4 space-y-2 text-neutral-400 font-normal normal-case">
+                    <ul class="list-disc pl-4 space-y-2 text-neutral-400 font-normal normal-case font-sans-custom">
                         <li><strong class="text-neutral-300 font-bold">The Deposit:</strong> A flat <strong class="text-red-600 font-bold">$50 deposit</strong> (or an amount equal to my base travel fee) is required via my secure payment link to lock in your time slot.</li>
                         <li><strong class="text-neutral-300 font-bold">Applying the Deposit:</strong> This is not an extra fee. This deposit goes directly toward your final invoice upon completion of my service.</li>
                         <li><strong class="text-neutral-300 font-bold">Cancellations & Rescheduling:</strong> If you need to reschedule, you must notify me at least <strong class="text-white font-bold">24 hours in advance</strong> to roll your deposit over to a new date. Cancellations or rescheduling requests made with less than 24 hours' notice, or "no-shows" where the vehicle or owner is unavailable upon arrival, will result in the forfeiture of the deposit.</li>
@@ -69,10 +82,10 @@
                     <span class="text-red-700">02 //</span> Service Call & Diagnostic Fee Policy
                 </h2>
                 <div class="text-[11px] tracking-[0.15em] uppercase text-neutral-400 space-y-3 pl-6 border-l border-neutral-900">
-                    <p class="normal-case font-normal leading-relaxed text-neutral-300">
+                    <p class="normal-case font-normal leading-relaxed text-neutral-300 font-sans-custom">
                         My mobile service call and diagnostic fee is a flat, non-refundable charge that covers my travel time, fuel, vehicle wear, and the first hour of professional pinpoint testing/troubleshooting.
                     </p>
-                    <ul class="list-disc pl-4 space-y-2 text-neutral-400 font-normal normal-case">
+                    <ul class="list-disc pl-4 space-y-2 text-neutral-400 font-normal normal-case font-sans-custom">
                         <li><strong class="text-neutral-300 font-bold">No "Waived" Fees:</strong> Because travel and professional diagnostic expertise are separate, distinct expenses, my diagnostic and service call fees <strong class="text-white font-bold">do not</strong> roll into or get waived by the cost of the subsequent repair.</li>
                         <li><strong class="text-neutral-300 font-bold">Extended Travel:</strong> My base fee covers jobs within my primary service radius. Jobs outside my standard boundary may incur a tiered extended travel fee, which will be disclosed and approved prior to booking.</li>
                     </ul>
@@ -85,10 +98,10 @@
                     <span class="text-red-700">03 //</span> Parts Matrix & Pricing Policy
                 </h2>
                 <div class="text-[11px] tracking-[0.15em] uppercase text-neutral-400 space-y-3 pl-6 border-l border-neutral-900">
-                    <p class="normal-case font-normal leading-relaxed text-neutral-300">
+                    <p class="normal-case font-normal leading-relaxed text-neutral-300 font-sans-custom">
                         I source high-quality, reliable parts through premium commercial vendors and dealerships to ensure your vehicle performs at its best.
                     </p>
-                    <ul class="list-disc pl-4 space-y-2 text-neutral-400 font-normal normal-case">
+                    <ul class="list-disc pl-4 space-y-2 text-neutral-400 font-normal normal-case font-sans-custom">
                         <li><strong class="text-neutral-300 font-bold">Parts Matrix:</strong> Parts prices are billed using a standard industry sliding-scale matrix.</li>
                         <li><strong class="text-neutral-300 font-bold">Price Ceilings:</strong> I benchmark my specialty and high-end components against local dealership retail counter pricing to ensure you are always charged a fair, competitive retail rate.</li>
                     </ul>
@@ -101,10 +114,10 @@
                     <span class="text-red-700">04 //</span> Customer-Supplied Parts Policy
                 </h2>
                 <div class="text-[11px] tracking-[0.15em] uppercase text-neutral-400 space-y-3 pl-6 border-l border-neutral-900">
-                    <p class="normal-case font-normal leading-relaxed text-neutral-300">
+                    <p class="normal-case font-normal leading-relaxed text-neutral-300 font-sans-custom">
                         While I highly recommend letting me source your parts to ensure correct fitment and warranty coverage, I understand clients occasionally wish to supply their own.
                     </p>
-                    <ul class="list-disc pl-4 space-y-2 text-neutral-400 font-normal normal-case">
+                    <ul class="list-disc pl-4 space-y-2 text-neutral-400 font-normal normal-case font-sans-custom">
                         <li><strong class="text-neutral-300 font-bold">Labor Surcharge:</strong> If you choose to supply your own parts, a premium surcharge of <strong class="text-white font-bold">$15 – $25 per hour</strong> will be added to my standard labor rate to offset lost parts revenue.</li>
                         <li><strong class="text-red-500 font-bold">NO WARRANTY:</strong> <strong class="text-white font-bold">JL MOBILE AUTO REPAIR & PERFORMANCE provides absolutely zero warranty on labor, performance, or part failure for customer-supplied parts.</strong> If a customer-supplied part fails, breaks during installation due to manufacturer defect, or is incorrect for the vehicle, the customer is responsible for the full labor cost of removal and re-installation.</li>
                     </ul>
@@ -117,10 +130,10 @@
                     <span class="text-red-700">05 //</span> Warranty & Insurance Buffer
                 </h2>
                 <div class="text-[11px] tracking-[0.15em] uppercase text-neutral-400 space-y-3 pl-6 border-l border-neutral-900">
-                    <p class="normal-case font-normal leading-relaxed text-neutral-300">
+                    <p class="normal-case font-normal leading-relaxed text-neutral-300 font-sans-custom">
                         When I source your parts, I back my work.
                     </p>
-                    <ul class="list-disc pl-4 space-y-2 text-neutral-400 font-normal normal-case">
+                    <ul class="list-disc pl-4 space-y-2 text-neutral-400 font-normal normal-case font-sans-custom">
                         <li><strong class="text-neutral-300 font-bold">My Guarantee:</strong> Parts sourced directly by me carry a standard warranty.</li>
                         <li><strong class="text-neutral-300 font-bold">The Labor Guarantee:</strong> If a part I supplied fails within its warranty period, I absorb the labor cost to come back out to your location and replace it. This peace of mind is built directly into my standard parts pricing.</li>
                     </ul>
@@ -133,7 +146,7 @@
                     <span class="text-red-700">06 //</span> "No-Start" & Condition Modifications
                 </h2>
                 <div class="text-[11px] tracking-[0.15em] uppercase text-neutral-400 space-y-3 pl-6 border-l border-neutral-900">
-                    <p class="normal-case font-normal leading-relaxed text-neutral-300">
+                    <p class="normal-case font-normal leading-relaxed text-neutral-300 font-sans-custom">
                         If a vehicle is booked for a specific component replacement (e.g., brake pads) but upon arrival the vehicle cannot be safely operated, cannot crank, or has completely different underlying issues, the job will immediately pause and convert to a standard diagnostic fee structure until the true issue is identified.
                     </p>
                 </div>
