@@ -4,250 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Internal Quote Matrix | JL Mobile Auto Repair & Performance</title>
-    <!-- Google Fonts Integration -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* Apply Custom Typography Globally */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .font-display {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        
-        /* Tactical Performance Mesh Background */
+        body { font-family: 'Roboto', sans-serif; }
         .bg-grid-mesh {
             background-size: 20px 20px;
             background-image: linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
         }
-
-        /* CSS Print Stylesheet overrides to instantly turn this into a clean, printable white customer sheet */
         @media print {
-            body {
-                background: #ffffff !important;
-                color: #000000 !important;
-                font-family: Arial, sans-serif !important;
-                padding: 0 !important;
-            }
-            .no-print {
-                display: none !important;
-            }
-            .print-container {
-                display: block !important;
-                width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
-            }
-            .print-invoice-box {
-                background: #ffffff !important;
-                border: 1px solid #000000 !important;
-                box-shadow: none !important;
-                color: #000000 !important;
-                width: 100% !important;
-                position: static !important;
-                min-height: auto !important;
-            }
-            .print-text-dark {
-                color: #000000 !important;
-            }
-            .print-text-muted {
-                color: #444444 !important;
-            }
-            .print-border-dark {
-                border-color: #000000 !important;
-            }
-            .print-total-text {
-                color: #b91c1c !important;
-            }
-            textarea, input {
-                border: none !important;
-                background: transparent !important;
-                padding: 0 !important;
-                resize: none !important;
-                color: #000000 !important;
-            }
+            body { background: #ffffff !important; color: #000000 !important; }
+            .no-print { display: none !important; }
+            .print-total-text { color: #60a5fa !important; }
+            .print-hidden-link { display: block !important; }
         }
     </style>
 </head>
-<body class="bg-[#040405] text-neutral-400 min-h-screen selection:bg-red-800 selection:text-white py-12 px-4 bg-grid-mesh">
+<body class="bg-[#040405] text-neutral-400 min-h-screen py-12 px-4 bg-grid-mesh">
 
-    <div class="max-w-5xl mx-auto print-container">
-        <!-- HEADER BLOCK -->
+    <div class="max-w-5xl mx-auto">
         <div class="mb-8 border-b border-neutral-900 pb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 no-print">
             <div>
-                <h1 class="text-xl font-black uppercase tracking-[0.25em] text-white font-display">
-                    JL MOBILE <span class="text-red-600">AUTO</span> <span class="text-neutral-500 font-normal">//</span> REPAIR & PERFORMANCE
+                <h1 class="text-xl font-black uppercase tracking-[0.25em] text-white">
+                    JL MOBILE <span class="text-blue-400">AUTO</span> <span class="text-neutral-500 font-normal">//</span> REPAIR & PERFORMANCE
                 </h1>
                 <p class="text-[9px] font-medium uppercase tracking-[0.3em] text-neutral-500 mt-1">Matrix Engine v4.1 // Diagnostic & Quote Engine</p>
             </div>
             <div class="flex flex-wrap gap-2">
-                <!-- COPY TEXT BUTTON -->
-                <button onclick="copyQuoteText()" class="text-[10px] font-display font-bold uppercase tracking-wider border border-neutral-800 text-neutral-300 bg-neutral-950 hover:border-neutral-500 px-4 py-2 transition-colors">
+                <button onclick="copyQuoteText()" class="text-[10px] font-bold uppercase tracking-wider border border-neutral-800 text-neutral-300 bg-neutral-950 hover:border-blue-400 px-4 py-2 transition-colors">
                     <i class="fa-solid fa-copy mr-2"></i> Copy Text
                 </button>
-                <!-- PRINT & PDF BUTTON -->
-                <button onclick="window.print()" class="text-[10px] font-display font-bold uppercase tracking-wider border border-neutral-800 text-white bg-neutral-900 hover:border-red-600 px-4 py-2 transition-colors">
+                <button onclick="window.print()" class="text-[10px] font-bold uppercase tracking-wider border border-neutral-800 text-white bg-neutral-900 hover:border-blue-400 px-4 py-2 transition-colors">
                     <i class="fa-solid fa-file-pdf mr-2"></i> Print / PDF
                 </button>
-                <!-- RESET BUTTON -->
-                <button onclick="resetMatrix()" class="text-[10px] font-display font-bold uppercase tracking-wider border border-neutral-800 text-neutral-500 hover:border-red-600 hover:text-white px-4 py-2 transition-colors">
+                <button onclick="resetMatrix()" class="text-[10px] font-bold uppercase tracking-wider border border-neutral-800 text-neutral-500 hover:border-blue-400 hover:text-white px-4 py-2 transition-colors">
                     <i class="fa-solid fa-rotate-left mr-2"></i> Reset
                 </button>
             </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- LEFT INPUT PANEL (HIDDEN ON PRINT) -->
             <div class="lg:col-span-2 space-y-6 no-print">
-                
-                <!-- 01. DISPATCH & DIAGNOSTICS -->
                 <div class="bg-[#09090b] border border-neutral-900 p-6 relative">
-                    <div class="absolute top-0 right-0 w-2 h-[2px] bg-red-600"></div>
-                    <div class="absolute top-0 right-0 h-2 w-[2px] bg-red-600"></div>
-                    <h2 class="text-xs font-bold font-display text-red-500 tracking-[0.2em] uppercase mb-4 border-b border-neutral-900 pb-2">01. Dispatch & Logistics</h2>
+                    <div class="absolute top-0 right-0 w-2 h-[2px] bg-blue-400"></div>
+                    <h2 class="text-xs font-bold text-blue-400 tracking-[0.2em] uppercase mb-4 border-b border-neutral-900 pb-2">01. Dispatch & Logistics</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-[10px] font-display uppercase tracking-wider mb-2 font-bold text-neutral-400">Mobile Call-Out Fee ($)</label>
-                            <input type="number" id="dispatch_fee" value="50.00" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 font-medium">
+                            <label class="block text-[10px] uppercase tracking-wider mb-2 font-bold text-neutral-400">Mobile Call-Out Fee ($)</label>
+                            <input type="number" id="dispatch_fee" value="50.00" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-blue-400 font-medium">
                         </div>
                         <div>
-                            <label class="block text-[10px] font-display uppercase tracking-wider mb-2 font-bold text-neutral-400">Diagnostic Rate ($)</label>
-                            <input type="number" id="diag_fee" value="100.00" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 font-medium">
+                            <label class="block text-[10px] uppercase tracking-wider mb-2 font-bold text-neutral-400">Diagnostic Rate ($)</label>
+                            <input type="number" id="diag_fee" value="100.00" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-blue-400 font-medium">
                         </div>
                     </div>
                 </div>
 
-                <!-- 02. LABOR & REPAIRS -->
                 <div class="bg-[#09090b] border border-neutral-900 p-6 relative">
-                    <div class="absolute top-0 right-0 w-2 h-[2px] bg-red-600"></div>
-                    <div class="absolute top-0 right-0 h-2 w-[2px] bg-red-600"></div>
-                    <h2 class="text-xs font-bold font-display text-red-500 tracking-[0.2em] uppercase mb-4 border-b border-neutral-900 pb-2">02. Labor & Calibration</h2>
+                    <div class="absolute top-0 right-0 w-2 h-[2px] bg-blue-400"></div>
+                    <h2 class="text-xs font-bold text-blue-400 tracking-[0.2em] uppercase mb-4 border-b border-neutral-900 pb-2">02. Labor & Calibration</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-[10px] font-display uppercase tracking-wider mb-2 font-bold text-neutral-400">Hourly Rate ($/hr)</label>
-                            <input type="number" id="labor_rate" value="120.00" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 font-medium">
+                            <label class="block text-[10px] uppercase tracking-wider mb-2 font-bold text-neutral-400">Hourly Rate ($/hr)</label>
+                            <input type="number" id="labor_rate" value="120.00" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-blue-400 font-medium">
                         </div>
                         <div>
-                            <label class="block text-[10px] font-display uppercase tracking-wider mb-2 font-bold text-neutral-400">Estimated Clock Hours</label>
-                            <input type="number" id="labor_hours" value="1.5" step="0.1" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 font-medium">
+                            <label class="block text-[10px] uppercase tracking-wider mb-2 font-bold text-neutral-400">Estimated Clock Hours</label>
+                            <input type="number" id="labor_hours" value="1.5" step="0.1" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-blue-400 font-medium">
                         </div>
                     </div>
                 </div>
 
-                <!-- 03. PARTS & SUPPLIES -->
                 <div class="bg-[#09090b] border border-neutral-900 p-6 relative">
-                    <div class="absolute top-0 right-0 w-2 h-[2px] bg-red-600"></div>
-                    <div class="absolute top-0 right-0 h-2 w-[2px] bg-red-600"></div>
-                    <h2 class="text-xs font-bold font-display text-red-500 tracking-[0.2em] uppercase mb-4 border-b border-neutral-900 pb-2">03. Hardware & Fluids</h2>
+                    <div class="absolute top-0 right-0 w-2 h-[2px] bg-blue-400"></div>
+                    <h2 class="text-xs font-bold text-blue-400 tracking-[0.2em] uppercase mb-4 border-b border-neutral-900 pb-2">03. Hardware & Fluids</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-[10px] font-display uppercase tracking-wider mb-2 font-bold text-neutral-400">Component/Parts Cost ($)</label>
-                            <input type="number" id="parts_cost" value="0.00" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 font-medium">
+                            <label class="block text-[10px] uppercase tracking-wider mb-2 font-bold text-neutral-400">Component/Parts Cost ($)</label>
+                            <input type="number" id="parts_cost" value="0.00" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-blue-400 font-medium">
                         </div>
                         <div>
-                            <label class="block text-[10px] font-display uppercase tracking-wider mb-2 font-bold text-neutral-400">Shop Supplies($)</label>
-                            <input type="number" id="supplies_cost" value="15.00" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 font-medium">
+                            <label class="block text-[10px] uppercase tracking-wider mb-2 font-bold text-neutral-400">Shop Supplies($)</label>
+                            <input type="number" id="supplies_cost" value="15.00" oninput="calculateQuote()" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-blue-400 font-medium">
                         </div>
                     </div>
                     <div class="mt-4">
-                        <label class="block text-[10px] font-display uppercase tracking-wider mb-2 font-bold text-neutral-400">Service & Notes</label>
-                        <textarea id="job_notes_input" oninput="updateNotes()" rows="3" placeholder="Input complete diagnosis details or performance build variables here..." class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 text-xs font-medium"></textarea>
+                        <label class="block text-[10px] uppercase tracking-wider mb-2 font-bold text-neutral-400">Service & Notes</label>
+                        <textarea id="job_notes_input" oninput="updateNotes()" rows="3" class="w-full bg-[#040405] border border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-blue-400 text-xs font-medium"></textarea>
                     </div>
                 </div>
-
             </div>
 
-            <!-- RIGHT PANEL: LIVE INVOICE / PRINTABLE MATRIX -->
             <div class="lg:col-span-1">
-                <div class="bg-[#09090b] border border-neutral-800 p-6 text-neutral-300 shadow-xl relative print-invoice-box min-h-[600px] flex flex-col justify-between">
+                <div class="bg-[#09090b] border border-neutral-800 p-6 text-neutral-300 shadow-xl relative min-h-[600px] flex flex-col justify-between">
                     <div>
-                        <!-- Invoice Header -->
-                        <div class="border-b-2 border-neutral-800 pb-4 mb-4 print-border-dark flex justify-between items-start">
-                            <div>
-                                <h3 class="text-sm font-black text-white font-display uppercase tracking-wider print-text-dark">JL MOBILE AUTO</h3>
-                                <p class="text-[9px] font-display font-bold text-neutral-500 uppercase tracking-widest print-text-muted">Repair & Performance</p>
-                            </div>
-                            <div class="text-right">
-                                <span class="text-[9px] font-display font-bold bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-1 uppercase tracking-wider no-print">CONSOLE</span>
-                            </div>
+                        <div class="border-b-2 border-neutral-800 pb-4 mb-4 flex justify-between items-start">
+                            <h3 class="text-sm font-black text-white uppercase tracking-wider">JL MOBILE AUTO</h3>
                         </div>
-
-                        <!-- Service Details -->
                         <div class="space-y-3 text-xs mb-6">
-                            <div class="flex justify-between border-b border-neutral-900/50 pb-1 print-border-dark">
-                                <span class="text-neutral-500 uppercase font-display tracking-wider font-bold text-[10px] print-text-muted">Call-Out Fee:</span>
-                                <span id="display_dispatch" class="font-bold text-white font-display print-text-dark">$50.00</span>
-                            </div>
-                            <div class="flex justify-between border-b border-neutral-900/50 pb-1 print-border-dark">
-                                <span class="text-neutral-500 uppercase font-display tracking-wider font-bold text-[10px] print-text-muted">Diagnostics:</span>
-                                <span id="display_diag" class="font-bold text-white font-display print-text-dark">$100.00</span>
-                            </div>
-                            <div class="flex justify-between border-b border-neutral-900/50 pb-1 print-border-dark">
-                                <span class="text-neutral-500 uppercase font-display tracking-wider font-bold text-[10px] print-text-muted">Labor Cost:</span>
-                                <span id="display_labor" class="font-bold text-white font-display print-text-dark">$180.00</span>
-                            </div>
-                            <div class="flex justify-between border-b border-neutral-900/50 pb-1 print-border-dark">
-                                <span class="text-neutral-500 uppercase font-display tracking-wider font-bold text-[10px] print-text-muted">Parts / Hardware:</span>
-                                <span id="display_parts" class="font-bold text-white font-display print-text-dark">$0.00</span>
-                            </div>
-                            <div class="flex justify-between border-b border-neutral-900/50 pb-1 print-border-dark">
-                                <span class="text-neutral-500 uppercase font-display tracking-wider font-bold text-[10px] print-text-muted">Supplies/Hazmat:</span>
-                                <span id="display_supplies" class="font-bold text-white font-display print-text-dark">$15.00</span>
-                            </div>
+                            <div class="flex justify-between border-b border-neutral-900/50 pb-1"><span class="text-neutral-500 uppercase font-bold text-[10px]">Call-Out Fee:</span> <span id="display_dispatch" class="font-bold text-white">$50.00</span></div>
+                            <div class="flex justify-between border-b border-neutral-900/50 pb-1"><span class="text-neutral-500 uppercase font-bold text-[10px]">Diagnostics:</span> <span id="display_diag" class="font-bold text-white">$100.00</span></div>
+                            <div class="flex justify-between border-b border-neutral-900/50 pb-1"><span class="text-neutral-500 uppercase font-bold text-[10px]">Labor Cost:</span> <span id="display_labor" class="font-bold text-white">$180.00</span></div>
+                            <div class="flex justify-between border-b border-neutral-900/50 pb-1"><span class="text-neutral-500 uppercase font-bold text-[10px]">Parts / Hardware:</span> <span id="display_parts" class="font-bold text-white">$0.00</span></div>
+                            <div class="flex justify-between border-b border-neutral-900/50 pb-1"><span class="text-neutral-500 uppercase font-bold text-[10px]">Supplies/Hazmat:</span> <span id="display_supplies" class="font-bold text-white">$15.00</span></div>
+                        </div>
+                        
+                        <div class="border border-neutral-900 p-3 bg-[#040405] mb-6">
+                            <h4 class="text-[9px] font-bold uppercase tracking-wider text-neutral-500 mb-1">Service Job & Notes:</h4>
+                            <div id="display_notes" class="text-xs text-neutral-400 italic">No job details added.</div>
                         </div>
 
-                        <!-- Job Notes Output Area -->
-                        <div class="border border-neutral-900 p-3 bg-[#040405] print-border-dark print-invoice-box mb-6">
-                            <h4 class="text-[9px] font-display font-bold uppercase tracking-wider text-neutral-500 mb-1 print-text-muted">Service Job & Notes:</h4>
-                            <div id="display_notes" class="text-xs text-neutral-400 font-normal italic whitespace-pre-wrap print-text-dark">No job details added.</div>
-                        </div>
-
-                        <!-- SIGNATURE & AUTHORIZATION BLOCK -->
-                        <div class="border-t border-dashed border-neutral-800 pt-4 mb-4 print-border-dark">
-                            <p class="text-[8px] text-neutral-500 print-text-muted leading-tight uppercase mb-6">
-                                Authorization: I hereby authorize the repair/performance modifications detailed above. JL Mobile Auto technicians are granted permission to operate the vehicle for tuning, data logging, inspection, and transit.
-                            </p>
-                            <div class="grid grid-cols-3 gap-2 pt-2 text-[9px] text-neutral-400 print-text-dark">
-                                <div class="col-span-2 border-b border-neutral-800 print-border-dark h-8 flex items-end pb-1 font-display">
-                                    X:
-                                </div>
-                                <div class="col-span-1 border-b border-neutral-800 print-border-dark h-8 flex items-end pb-1 font-display">
-                                    Date:
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-3 gap-2 text-[7px] text-neutral-600 print-text-muted uppercase mt-1 tracking-wider">
-                                <div class="col-span-2">Authorized Customer Signature</div>
-                                <div class="col-span-1">MM / DD / YY</div>
-                            </div>
+                        <div class="mt-4 pt-4 border-t border-dashed border-neutral-800">
+                            <h4 class="text-[9px] font-bold uppercase tracking-wider text-neutral-500 mb-1">Service Policies:</h4>
+                            <p class="text-[10px] text-blue-400 break-all">https://jlmobileautorepair.github.io/jlmobileauto/policies</p>
                         </div>
                     </div>
 
-                    <!-- Balance Due Total Footer -->
-                    <div class="border-t-2 border-neutral-800 pt-4 mt-auto print-border-dark">
+                    <div class="border-t-2 border-neutral-800 pt-4 mt-auto">
                         <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-[9px] font-display font-bold uppercase tracking-widest text-neutral-500 print-text-muted">Estimated Total</p>
-                                <p class="text-[8px] text-neutral-600 uppercase tracking-tight no-print">Final tally dependent on teardown</p>
-                            </div>
-                            <div class="text-right">
-                                <span id="display_total" class="text-2xl font-black font-display text-red-500 tracking-tight print-total-text">$345.00</span>
-                            </div>
+                            <p class="text-[9px] font-bold uppercase tracking-widest text-neutral-500">Estimated Total</p>
+                            <span id="display_total" class="text-2xl font-black text-blue-400">$345.00</span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CALCULATOR ENGINE JAVASCRIPT -->
     <script>
         function calculateQuote() {
             const dispatchFee = parseFloat(document.getElementById('dispatch_fee').value) || 0;
@@ -256,10 +145,8 @@
             const laborHours = parseFloat(document.getElementById('labor_hours').value) || 0;
             const partsCost = parseFloat(document.getElementById('parts_cost').value) || 0;
             const suppliesCost = parseFloat(document.getElementById('supplies_cost').value) || 0;
-
             const totalLabor = laborRate * laborHours;
             const totalEstimate = dispatchFee + diagFee + totalLabor + partsCost + suppliesCost;
-
             document.getElementById('display_dispatch').innerText = '$' + dispatchFee.toFixed(2);
             document.getElementById('display_diag').innerText = '$' + diagFee.toFixed(2);
             document.getElementById('display_labor').innerText = '$' + totalLabor.toFixed(2);
@@ -267,35 +154,14 @@
             document.getElementById('display_supplies').innerText = '$' + suppliesCost.toFixed(2);
             document.getElementById('display_total').innerText = '$' + totalEstimate.toFixed(2);
         }
-
         function updateNotes() {
             const notesInput = document.getElementById('job_notes_input').value;
-            const notesDisplay = document.getElementById('display_notes');
-            if (notesInput.trim() === "") {
-                notesDisplay.innerText = "No job details added.";
-            } else {
-                notesDisplay.innerText = notesInput;
-            }
+            document.getElementById('display_notes').innerText = notesInput.trim() === "" ? "No job details added." : notesInput;
         }
-
         function copyQuoteText() {
-            const dispatch = document.getElementById('display_dispatch').innerText;
-            const diag = document.getElementById('display_diag').innerText;
-            const labor = document.getElementById('display_labor').innerText;
-            const parts = document.getElementById('display_parts').innerText;
-            const supplies = document.getElementById('display_supplies').innerText;
-            const total = document.getElementById('display_total').innerText;
-            const notes = document.getElementById('display_notes').innerText;
-
-            const quoteText = `JL MOBILE AUTO REPAIR & PERFORMANCE\nService Estimate Sheet\n---------------------\nCall-Out Fee: ${dispatch}\nDiagnostics: ${diag}\nLabor Cost: ${labor}\nParts/Hardware: ${parts}\nSupplies/Hazmat: ${supplies}\n---------------------\nBuild/Service Notes:\n${notes}\n---------------------\nESTIMATED TOTAL: ${total}`;
-            
-            navigator.clipboard.writeText(quoteText).then(() => {
-                alert("Quote details successfully copied to clipboard!");
-            }).catch(err => {
-                alert("Unable to copy on this device automatically.");
-            });
+            const quoteText = `JL MOBILE AUTO REPAIR & PERFORMANCE\nService Estimate\n---\nTotal: ${document.getElementById('display_total').innerText}\n\nPolicies: https://jlmobileautorepair.github.io/jlmobileauto/policies`;
+            navigator.clipboard.writeText(quoteText).then(() => alert("Copied!"));
         }
-
         function resetMatrix() {
             document.getElementById('dispatch_fee').value = "50.00";
             document.getElementById('diag_fee').value = "100.00";
@@ -304,14 +170,10 @@
             document.getElementById('parts_cost').value = "0.00";
             document.getElementById('supplies_cost').value = "15.00";
             document.getElementById('job_notes_input').value = "";
-            
             calculateQuote();
             updateNotes();
         }
-
-        window.onload = function() {
-            calculateQuote();
-        };
+        window.onload = calculateQuote;
     </script>
 </body>
 </html>
