@@ -141,12 +141,15 @@
                     </div>
                 </div>
 
-               <!-- Section 08: Acknowledgment -->
+              <!-- Section 08: Acknowledgment -->
 <div class="pt-6 border-t border-neutral-900">
     <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
         
-        <!-- PASTE YOUR ACCESS KEY HERE -->
+        <!-- REQUIRED: Replace with your actual key -->
         <input type="hidden" name="access_key" value="7c77590b-89b3-43a8-85af-7a91ae177abe">
+        
+        <!-- REDIRECT: This sends them to your new page -->
+        <input type="hidden" name="redirect" value="https://jlmobileautorepair.github.io/jlmobileauto/success">
 
         <div class="flex items-center gap-3">
             <input type="checkbox" id="agree" name="agreement" required class="w-4 h-4 bg-neutral-900 border-neutral-700 rounded accent-sky-500">
